@@ -1,6 +1,6 @@
 <h1>ExpNo 1 :Developing AI Agent with PEAS Description</h1>
-<h3>Name: Saravanan N</h3>
-<h3>Register Number/Staff Id: TSML006</h3>
+<h3>Name: VASANTH N</h3>
+<h3>Register Number: 212224110060</h3>
 
 
 <h3>AIM:</h3>
@@ -40,3 +40,63 @@
 <p>Treat unhealthy patients in each room. And check for the unhealthy patients in random room</p>
 <h3>STEP 5:</h3>
 <p>Measure the performance parameters: For each treatment performance incremented, for each movement performance decremented</p>
+
+## PROGRAM:
+```
+import random
+
+# Define rooms and randomly assign patient temperatures
+rooms = {
+    "Room A": random.uniform(97.0, 103.0),
+    "Room B": random.uniform(97.0, 103.0)
+}
+
+# Agent initial state
+current_room = "Room A"
+performance = 0
+
+# Function to check health and treat patient
+def check_and_treat(room, temp):
+    global performance
+    print(f"\nAgent is in {room}")
+    print(f"Patient temperature: {temp:.2f}°F")
+
+    if temp > 98.5:
+        print("Patient is UNHEALTHY → Prescribing Medicine")
+        performance += 10
+    else:
+        print("Patient is HEALTHY → No treatment needed")
+
+# Function to move agent
+def move_agent(current):
+    global performance
+    performance -= 1
+    if current == "Room A":
+        return "Room B"
+    else:
+        return "Room A"
+
+# Run agent for multiple cycles
+for step in range(4):
+
+    # Sense temperature
+    temperature = rooms[current_room]
+
+    # Take action
+    check_and_treat(current_room, temperature)
+
+    # Move to other room
+    next_room = move_agent(current_room)
+    print(f"Moving to {next_room}")
+    print(f"Current Performance Score: {performance}")
+
+    current_room = next_room
+
+# Final result
+print("\nFinal Performance Score:", performance)
+```
+## OUTPUT:
+<img width="1484" height="1102" alt="image" src="https://github.com/user-attachments/assets/8e2ac351-1dfd-4155-abbd-5488ed371c22" />
+
+## RESULT:
+  The PEAS description for the problem and development an AI agent were completed successfully.
